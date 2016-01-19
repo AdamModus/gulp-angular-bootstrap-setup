@@ -1,0 +1,29 @@
+{
+  "name": "gulp-angular-bootstrap-setup",
+  "version": "1.0.0",
+  "description": "A simple demo using gulp, angular and bootstrap for future reference",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdamModus/gulp-angular-bootstrap-setup.git"
+  },
+  "keywords": [
+    "demo",
+    "gulp",
+    "server"
+  ],
+  "author": "Rafael Fernandes <rafatexfr@gmail.com> (https://github.com/AdamModus)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdamModus/gulp-angular-bootstrap-setup/issues"
+  },
+  "homepage": "https://github.com/AdamModus/gulp-angular-bootstrap-setup#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.1.1",
+    "gulp-util": "^3.0.7"
+  }
+}
