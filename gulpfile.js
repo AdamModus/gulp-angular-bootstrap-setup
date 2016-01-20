@@ -1,26 +1,45 @@
-/* jshint node: true */
-'use strict';
-// grab our gulp packages
-// grab our gulp packages
-var sass = require('gulp-sass');
 var gulp = require('gulp');
+var browserSync = require('browser-sync');
+var sass = require('gulp-sass');
+var reload = browserSync.reload;
 
 
-//compile sass
+// where all the files are
+var src = {
+   scss: 'app/stylesheets/sass/**/*.scss',
+   css: 'app/stylesheets/css',
+   html: 'app/**/*.html',
+   js: 'app/scripts/**/*.js'
+};
+
+// Static Server + watching scss/html files
+gulp.task('serve', ['sass'], function() {
+
+   // start browserSync
+   browserSync({
+      // root folder
+      server: "./app",
+      // used port
+      port: 8181
+   });
+
+});
+
+// Compile sass into CSS
 gulp.task('sass', function() {
-   gulp.src('app/stylesheets/sass/**/*.scss')
+   gulp.src(src.scss)
       .pipe(sass().on('error', sass.logError))
-      .pipe(gulp.dest('app/stylesheets'));
+      .pipe(gulp.dest(src.css))
+      .pipe(reload({
+         stream: true
+      }));
 });
 
-//realtime/livereload - watching for changes
 gulp.task('watch', function() {
-   //if any watched sass files change, run 'sass' task = compile sass
-   gulp.watch('app/stylesheets/sass/**/*.scss', ['sass']);
+   gulp.watch(src.scss, ['sass']);
+   gulp.watch([src.html, src.js]).on('change', reload);
 });
 
-
-// The default task (called when you run `gulp` from cli)
-gulp.task('default', ['sass'], function() {
+gulp.task('default', ['sass', 'serve'], function() {
    gulp.start('watch');
 });
